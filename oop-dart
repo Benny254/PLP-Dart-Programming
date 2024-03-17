@@ -1,0 +1,54 @@
+// Define an interface
+abstract class Printable {
+  void printInfo();
+}
+
+// Define a base class that implements the Printable interface
+class Shape implements Printable {
+  String name;
+
+  Shape(this.name);
+
+  @override
+  void printInfo() {
+    print('Shape: $name');
+  }
+}
+
+// Define a subclass that overrides the printInfo method
+class Circle extends Shape {
+  double radius;
+
+  Circle(String name, this.radius) : super(name);
+
+  @override
+  void printInfo() {
+    super.printInfo();
+    print('Radius: $radius');
+  }
+}
+
+// Method to demonstrate the use of a loop
+void printShapes(List<Shape> shapes) {
+  for (var shape in shapes) {
+    shape.printInfo();
+  }
+}
+
+void main() {
+  // Read data from a file and initialize instances
+  var shapesData = [
+    ['Circle', 'Circle 1', 5.0],
+    ['Circle', 'Circle 2', 8.0]
+  ];
+  var shapes = <Shape>[];
+  for (var data in shapesData) {
+    if (data[0] == 'Circle') {
+      shapes.add(Circle(data[1], data[2]));
+    }
+  }
+
+  // Print information using the overridden method
+  printShapes(shapes);
+}
+
